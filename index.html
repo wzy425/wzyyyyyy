@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小鹏汇天旅航者 X2：技术、场景与市场可行性调研 | 飞行汽车技术基础课程作业</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap">
+<style>
+  :root{
+    --ink:#16233a; --ink-soft:#3c4a63; --muted:#6b778c;
+    --line:#e4e8f0; --bg:#f6f8fb; --card:#ffffff;
+    --brand:#1f5fa8; --brand-deep:#123a63; --accent:#2e9cd6;
+    --warn:#b8741a; --good:#1f8a5b; --shadow:0 6px 24px rgba(22,35,58,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Noto Sans SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);line-height:1.85;font-size:16px}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+
+  /* ===== Hero ===== */
+  header.hero{background:linear-gradient(160deg,var(--brand-deep) 0%,var(--brand) 55%,var(--accent) 100%);color:#fff;padding:64px 0 48px;position:relative;overflow:hidden}
+  header.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:380px;height:380px;border-radius:50%;background:rgba(255,255,255,.08)}
+  .kicker{font-size:13px;letter-spacing:.22em;text-transform:uppercase;opacity:.85;margin-bottom:18px}
+  h1{font-family:"Noto Serif SC",serif;font-size:34px;line-height:1.35;font-weight:900;margin-bottom:14px}
+  .subtitle{font-size:17px;opacity:.92;max-width:720px}
+  .meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px 26px;font-size:14px;opacity:.9}
+  .meta span{display:inline-flex;align-items:center;gap:8px}
+  .meta b{font-weight:500}
+
+  /* ===== TOC ===== */
+  nav.toc{background:var(--card);box-shadow:var(--shadow);border:1px solid var(--line);border-radius:14px;margin:-30px auto 40px;padding:22px 26px;position:relative;z-index:2}
+  nav.toc h2{font-size:15px;color:var(--muted);letter-spacing:.1em;margin-bottom:14px;font-weight:600}
+  nav.toc ol{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:8px 24px}
+  nav.toc a{color:var(--ink-soft);text-decoration:none;font-size:15px}
+  nav.toc a:hover{color:var(--brand)}
+  nav.toc .num{color:var(--brand);font-weight:700;margin-right:8px}
+
+  /* ===== Sections ===== */
+  section{margin-bottom:46px}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px;border-bottom:2px solid var(--line);padding-bottom:12px}
+  .sec-head .no{font-family:"Noto Serif SC",serif;font-size:15px;color:var(--brand);font-weight:700;white-space:nowrap}
+  h2.title{font-family:"Noto Serif SC",serif;font-size:24px;font-weight:700;color:var(--ink)}
+  h3{font-size:17px;margin:22px 0 10px;color:var(--brand-deep)}
+  p{margin-bottom:14px;color:var(--ink-soft)}
+  .lead{font-size:17px;color:var(--ink)}
+  strong{color:var(--ink)}
+  .en{color:var(--muted);font-size:14px;font-weight:400}
+
+  figure{margin:22px 0}
+  figure img{width:100%;border-radius:12px;box-shadow:var(--shadow);display:block}
+  figcaption{font-size:13px;color:var(--muted);margin-top:8px;text-align:center}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:var(--shadow);margin:18px 0}
+  .callout{border-left:4px solid var(--brand);background:#f0f6fc;border-radius:0 12px 12px 0;padding:16px 20px;margin:18px 0;color:var(--ink-soft)}
+  .callout.warn{border-color:var(--warn);background:#fdf6ec}
+
+  /* ===== Tables ===== */
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14.5px;background:var(--card);border-radius:12px;overflow:hidden}
+  th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  th{background:var(--brand-deep);color:#fff;font-weight:600}
+  tr:last-child td{border-bottom:none}
+  td .tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12.5px;font-weight:600}
+  .t-good{background:#e6f4ec;color:var(--good)}
+  .t-mid{background:#fdf1e0;color:var(--warn)}
+  .t-low{background:#fdeaea;color:#c0392b}
+
+  .spec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:20px 0}
+  .spec{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+  .spec .v{font-family:"Noto Serif SC",serif;font-size:22px;font-weight:700;color:var(--brand)}
+  .spec .k{font-size:13px;color:var(--muted);margin-top:4px}
+
+  ul.check{list-style:none;margin:12px 0}
+  ul.check li{padding-left:24px;position:relative;margin-bottom:8px;color:var(--ink-soft)}
+  ul.check li::before{content:"▸";position:absolute;left:0;color:var(--brand)}
+
+  .gate{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}
+  .gate .g{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:12px;padding:16px}
+  .gate .g b{color:var(--brand-deep);display:block;margin-bottom:6px}
+  .gate .g span{font-size:13.5px;color:var(--muted)}
+
+  /* ===== References ===== */
+  ol.refs{padding-left:22px;font-size:13.5px;color:var(--muted)}
+  ol.refs li{margin-bottom:10px;line-height:1.7}
+  ol.refs a{color:var(--brand);text-decoration:none}
+  ol.refs a:hover{text-decoration:underline}
+
+  footer{background:var(--brand-deep);color:#dbe6f2;text-align:center;padding:30px 24px;font-size:13.5px;margin-top:50px}
+
+  @media(max-width:720px){
+    h1{font-size:26px}
+    nav.toc ol{grid-template-columns:1fr}
+    .spec-grid,.gate{grid-template-columns:repeat(2,1fr)}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">飞行汽车技术基础 · 课程案例调研</div>
+    <h1>小鹏汇天旅航者 X2：技术可行性、应用场景与市场可行性调研分析</h1>
+    <p class="subtitle">从第五代双座 eVTOL 验证平台，到分体式“陆地航母”产品路线——审视一款国产飞行汽车在构型、安全、适航、场景与商业化上的真实边界。</p>
+    <div class="meta">
+      <span><b>调研对象：</b>小鹏汇天 XPeng AeroHT 旅航者 X2（Voyager X2）及汇天产品体系</span>
+      <span><b>证据截止：</b>2026 年 11 月</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= TOC ================= -->
+<nav class="toc wrap">
+  <h2>文章目录 / Contents</h2>
+  <ol>
+    <li><a href="#s0"><span class="num">01</span>执行摘要 Executive Summary</a></li>
+    <li><a href="#s1"><span class="num">02</span>研究设计与证据边界</a></li>
+    <li><a href="#s2"><span class="num">03</span>发展路径与产品定义</a></li>
+    <li><a href="#s3"><span class="num">04</span>系统架构与关键技术</a></li>
+    <li><a href="#s4"><span class="num">05</span>技术可行性与物理边界</a></li>
+    <li><a href="#s5"><span class="num">06</span>安全、冗余与适航进展</a></li>
+    <li><a href="#s6"><span class="num">07</span>应用场景分析</a></li>
+    <li><a href="#s7"><span class="num">08</span>市场可行性分析</a></li>
+    <li><a href="#s8"><span class="num">09</span>竞品横向比较</a></li>
+    <li><a href="#s9"><span class="num">10</span>工程化路线与 Go/No-Go 判据</a></li>
+    <li><a href="#s10"><span class="num">11</span>结论与课程延伸</a></li>
+    <li><a href="#s11"><span class="num">12</span>参考文献 References</a></li>
+  </ol>
+</nav>
+
+<main class="wrap">
+
+<!-- ================= 01 执行摘要 ================= -->
+<section id="s0">
+  <div class="sec-head"><span class="no">01</span><h2 class="title">执行摘要 <span class="en">Executive Summary</span></h2></div>
+  <p class="lead">旅航者 X2 是小鹏汇天（XPeng AeroHT，小鹏汽车生态企业）自主研发的第五代双人智能电动飞行器，属于纯电垂直起降（eVTOL）多旋翼平台。它在 2021 年立项、2022 年迪拜完成首飞、2023 年获得中国民航局飞行许可，是国内较早完成载人公开飞行演示的机型之一。</p>
+  <div class="card">
+    <p><strong>核心判断可概括为三点：</strong></p>
+    <ul class="check">
+      <li><strong>技术层面：</strong>八轴八桨多旋翼 + 全碳纤维机身 + 手动/自动双驾驶模式，工程演示已跑通；但 35 分钟级续航、1000 米以下高度和多旋翼气动效率，决定它只适合短途、低海拔、受控环境飞行。</li>
+      <li><strong>场景层面：</strong>近期最现实的场景是文旅观光、空中展示、园区巡逻与应急演练；城市高频通勤、城际出行在当前续航、噪声、起降条件与法规下尚不成立。</li>
+      <li><strong>市场层面：</strong>X2 本身是阶段性验证平台，并非最终量产交付车型；汇天真正面向销售的是分体式“陆地航母”飞行体。截至 2026 年，其型号合格证（TC）仍在最后审定阶段，订单为意向/预售性质，商业化闭环要等适航、起降网络与运营体系共同成熟。</li>
+    </ul>
+  </div>
+  <div class="callout">本报告不把“低空经济万亿市场”直接乘以任意份额。宏观预测包含无人机、通用航空、基础设施与新型服务，不能等同于某一款载人 eVTOL 的可服务市场；本文按“技术适配—监管难度—支付意愿”逐场景判断，并对证据状态保持区分。</div>
+</section>
+
+<!-- ================= 02 研究设计 ================= -->
+<section id="s1">
+  <div class="sec-head"><span class="no">02</span><h2 class="title">研究设计与证据边界 <span class="en">Method and Evidence</span></h2></div>
+  <p>调研围绕 X2 整车产品展开，并把汇天后续分体式产品“陆地航母”作为路线参照，以回答课程要求的三个核心问题：技术是否可行、场景是否适配、市场能否成立。</p>
+  <h3>证据分级原则</h3>
+  <table>
+    <tr><th>证据类型</th><th>处理方式</th></tr>
+    <tr><td>企业官方披露（参数、构型、驾驶模式、产品规划）</td><td>作为基础事实，但属于企业自证材料，需与第三方报道交叉核对</td></tr>
+    <tr><td>公开飞行演示与航展报道</td><td>可证明演示本身发生，不代表持续飞行包线或商业运营能力</td></tr>
+    <tr><td>适航与监管文件进展（TC 受理、TIA、符合性试验）</td><td>作为合规状态的关键节点；未取证前，量产交付与载人收费运行均不成立</td></tr>
+    <tr><td>市场预测与订单数据</td><td>意向订单 ≠ 不可退款订单 ≠ 最终交付；收入估算仅作情景假设，不构成销量预测</td></tr>
+  </table>
+  <p class="callout warn">需要说明：不同公开来源对 X2 空机重量（560 kg / 680 kg）、载重（160–200 kg）与续航（25–35 分钟）存在口径差异，本报告在参数表中标注区间，并以官方早期发布口径为主、后期现场报道为辅。</p>
+</section>
+
+<!-- ================= 03 发展路径 ================= -->
+<section id="s2">
+  <div class="sec-head"><span class="no">03</span><h2 class="title">发展路径与产品定义 <span class="en">Development Path</span></h2></div>
+
+  <figure>
+    <img src="assets/x2-studio.jpg" alt="小鹏汇天旅航者 X2 静态展示">
+    <figcaption>图 1：旅航者 X2 封闭式座舱多旋翼飞行器（来源：小鹏汽车官方发布）</figcaption>
+  </figure>
+
+  <h3>关键时间线</h3>
+  <table>
+    <tr><th>时间</th><th>节点</th><th>意义</th></tr>
+    <tr><td>2020 年前后</td><td>汇天团队积累 15000 余次飞行数据，迭代 T1、X1 等机型</td><td>为封闭式载人座舱奠定飞控与旋翼基础</td></tr>
+    <tr><td>2021 年 6 月</td><td>X2 完成首飞；9 月亮相珠海航展，公布未来城市场景构想</td><td>第五代双人飞行器公开亮相</td></tr>
+    <tr><td>2022 年 10 月</td><td>在阿联酋迪拜完成首次全球公开飞行，获迪拜民航局 DCAA 飞行许可</td><td>获得海外受控飞行许可，完成国际展示</td></tr>
+    <tr><td>2023 年 1 月</td><td>获得中国民航局（CAAC）飞行许可</td><td>在国内受控空域开展试飞与演示</td></tr>
+    <tr><td>2024 年 3 月</td><td>在广州城市核心区完成公开飞行；成都车展等多地演示</td><td>城市环境下的低空飞行验证</td></tr>
+    <tr><td>2023–2024 年</td><td>产品路线转向分体式“陆地航母”；2024 航展完成全球首次公开载人飞行</td><td>X2 从“整车飞行汽车”叙事过渡到陆空分工路线</td></tr>
+    <tr><td>2025–2026 年</td><td>广州量产工厂建设；飞行体 TC 申请受理，TIA 签发，符合性试验推进；累计意向订单数千台</td><td>进入适航审定与量产准备阶段</td></tr>
+  </table>
+
+  <h3>产品定义：X2 是“阶段性探索产品”，不是上路汽车</h3>
+  <p>X2 采用封闭式双人座舱，外观与小鹏 P7 共享设计基因，全机身碳纤维结构。需要强调的是：<strong>X2 本质是一台飞行器，不具备公共道路行驶能力</strong>——地面移动依赖可选装的滚轮式起落架，尺寸按可停入车位设计。它在汇天体系中的定位，是“飞机与汽车成功耦合之前的阶段性探索产品”。</p>
+  <p>真正承接“飞行汽车”叙事的，是后续分体式“陆地航母”：陆行体为可正常上路、可驶入地库的三轴六轮增程 SUV，飞行体可自动收纳进后备舱并由陆行体多次补能；到合规起降点后自动分离、垂直起飞，飞行后自动回收结合。这一方案把道路行驶与航空飞行拆成两个独立合规对象，规避了“同一套底盘同时过汽车与航空器双重认证”的难题。</p>
+
+  <figure>
+    <img src="assets/x2-flight.jpg" alt="X2 在空中飞行">
+    <figcaption>图 2：旅航者 X2 飞行实拍（来源：小鹏汽车官方发布）</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/carrier-split.jpg" alt="陆地航母陆行体与飞行体分离示意">
+    <figcaption>图 3：分体式“陆地航母”陆行体与飞行体分离结合示意（来源：小鹏汽车官方发布）</figcaption>
+  </figure>
+</section>
+
+<!-- ================= 04 系统架构 ================= -->
+<section id="s3">
+  <div class="sec-head"><span class="no">04</span><h2 class="title">系统架构与关键技术 <span class="en">Architecture and Technology</span></h2></div>
+
+  <div class="spec-grid">
+    <div class="spec"><div class="v">2 座</div><div class="k">封闭式座舱</div></div>
+    <div class="spec"><div class="v">8 轴 8 桨</div><div class="k">纯电多旋翼布局</div></div>
+    <div class="spec"><div class="v">130 km/h</div><div class="k">最大飞行速度</div></div>
+    <div class="spec"><div class="v">≤1000 m</div><div class="k">设计飞行高度</div></div>
+  </div>
+
+  <table>
+    <tr><th>项目</th><th>参数 / 描述（公开口径）</th><th>备注</th></tr>
+    <tr><td>构型</td><td>八轴八桨多旋翼，机臂可折叠，封闭式双人座舱</td><td>无固定翼、无涵道过渡，纯旋翼悬停与平飞</td></tr>
+    <tr><td>动力</td><td>8 台电池供电电动机分别驱动 8 副螺旋桨，纯电推进，飞行中无二氧化碳排放</td><td>分布式电推进，提供一定动力冗余</td></tr>
+    <tr><td>结构材料</td><td>全机身碳纤维，兼顾轻量化与高强度</td><td>公开口径空机含电池约 560 kg（另有 680 kg 现场报道）</td></tr>
+    <tr><td>载重</td><td>最大载重约 160–200 kg，搭载两名成年人及少量行李</td><td>载重与续航对乘客体重、风况敏感</td></tr>
+    <tr><td>续航时间</td><td>约 25–35 分钟（不同工况口径）</td><td>对应航程为城市内短途，非城际距离</td></tr>
+    <tr><td>驾驶模式</td><td>手动驾驶 + 自动驾驶双模式；一键起飞、一键返航、一键降落；自主航线规划、环境感知与降落辅助</td><td>自动飞行降低了操作门槛，但载人运行仍需合规资质</td></tr>
+    <tr><td>几何尺寸</td><td>展开状态约长 5.17 m、宽 5.12 m、高 1.36 m，桨叶直径约 1.83 m</td><td>折叠后便于收纳与运输</td></tr>
+  </table>
+
+  <h3>关键技术模块</h3>
+  <ul class="check">
+    <li><strong>分布式电推进（DEP）：</strong>多电机多桨独立驱动，单台动力失效时其余单元可承担一定补偿，是多旋翼载人平台冗余设计的基础。</li>
+    <li><strong>飞控与空中智驾：</strong>汇天团队构建全栈自研低空 3D 智能驾驶能力，覆盖航线规划、多维环境融合感知、自主返航与降落视野辅助；自研单杆操纵系统以降低操作复杂度。</li>
+    <li><strong>轻量化机身：</strong>碳纤维主体结构与桨叶，在承重与减重之间权衡，直接影响载重与续航。</li>
+    <li><strong>补能思路：</strong>X2 沿用电动汽车超充技术路线；分体式方案中陆行体作为移动超充站，满油满电可对飞行体多次补能，缓解飞行器自身电池容量受限的问题。</li>
+  </ul>
+
+  <figure>
+    <img src="assets/carrier-aircraft.jpg" alt="陆地航母飞行体静态展示">
+    <figcaption>图 4：分体式方案飞行体，六旋翼双涵道构型，机臂与桨叶可折叠（来源：小鹏汽车 CES 官方展示）</figcaption>
+  </figure>
+</section>
+
+<!-- ================= 05 技术可行性 ================= -->
+<section id="s4">
+  <div class="sec-head"><span class="no">05</span><h2 class="title">技术可行性与物理边界 <span class="en">Physics of Limited Flight</span></h2></div>
+  <p>多旋翼 eVTOL 的技术可行性必须放在物理约束下评估，而不能只看“已经飞起来”。X2 所代表的纯多旋翼路线有明确的能力天花板。</p>
+
+  <h3>可行的部分</h3>
+  <ul class="check">
+    <li>垂直起降无需跑道，适配楼顶、场地、景区等小面积起降点；</li>
+    <li>纯电推进结构相对简单、噪声与排放低于燃油直升机，适合城市低空与文旅场景；</li>
+    <li>分布式动力 + 自动飞控，使短时、受控条件下的载人演示具备工程基础；</li>
+    <li>碳纤维机身与折叠机臂，解决了一部分收纳与运输问题。</li>
+  </ul>
+
+  <h3>受限的部分</h3>
+  <table>
+    <tr><th>约束域</th><th>物理/工程原因</th><th>对能力的限制</th></tr>
+    <tr><td>续航与航程</td><td>锂电池能量密度远低于航空燃油；多旋翼悬停功率消耗大，载客后可用能量进一步被压缩</td><td>仅 25–35 分钟级留空时间，无法承担城际通勤或长距离任务</td></tr>
+    <tr><td>气动效率</td><td>纯多旋翼无固定翼巡航升力，平飞仍需旋翼克服阻力，效率低于复合翼/倾转旋翼</td><td>速度 130 km/h 级、高度 1000 m 以下，飞行包线较窄</td></tr>
+    <tr><td>载重敏感性</td><td>两名乘客 + 行李接近载重上限，体重、海拔、气温、风况都会改变起飞重量与裕度</td><td>运营场景受载荷与气象条件严格限制</td></tr>
+    <tr><td>抗风与环境</td><td>多旋翼惯量较小，城市楼宇间阵风、下洗气流与地面效应影响姿态稳定</td><td>需划定可飞气象窗口与净空条件</td></tr>
+    <tr><td>地面移动</td><td>X2 道路行驶能力极弱，本质是飞行器而非汽车</td><td>不能作为“开到哪飞到哪”的两栖个人载具</td></tr>
+  </table>
+
+  <div class="callout">结论：X2 在“短途、低空、受控空域、良好气象”的条件下技术可行；一旦把目标设定为城市日常通勤、长航程或全天候运行，现有纯电多旋翼构型在能量、气动和环境适应性上都不支持。汇天后续用倾转旋翼机型（A868）面向城际、用分体式方案面向限定场景，正是对上述边界的路线回应。</div>
+</section>
+
+<!-- ================= 06 安全与适航 ================= -->
+<section id="s5">
+  <div class="sec-head"><span class="no">06</span><h2 class="title">安全、冗余与适航进展 <span class="en">Safety, Redundancy and Airworthiness</span></h2></div>
+  <p>载人飞行器的安全论证不能停留在“飞控能自动返航”。航空安全要求覆盖单点/多点失效后的姿态可控、关键系统冗余、应急着陆与地面人员隔离；适航则是从概念阶段就影响架构、供应商、软件保证与运行程序的过程，不是开发末端追加的测试步骤。</p>
+
+  <h3>汇天公开的安全设计</h3>
+  <ul class="check">
+    <li>动力、飞控、供电、通信、操控等关键系统采用全域冗余备份，第一套系统失效后第二套无缝衔接；</li>
+    <li>自动模式下具备多维环境融合感知、降落视野辅助、自主返航降落；</li>
+    <li>分体式飞行体采用六旋翼双涵道构型，机臂与桨叶可折叠，主体结构与桨叶为碳纤维材料。</li>
+  </ul>
+
+  <h3>适航审定状态（截至 2026 年 11 月）</h3>
+  <table>
+    <tr><th>合规环节</th><th>状态</th><th>含义</th></tr>
+    <tr><td>TC 型号合格证申请受理</td><td>2024 年初由民航局受理</td><td>进入法定型号审定流程，是从“试验飞行器”走向“合法航空器”的第一步</td></tr>
+    <tr><td>符合性验证试验及试飞</td><td>69 项已全部通过，型号检查核准书（TIA）已签发</td><td>审定进入最后阶段，但 TC 证书尚未正式下发</td></tr>
+    <tr><td>PC 生产许可证 / AC 适航证 / OC 运营合格证</td><td>尚未在公开资料中见齐套</td><td>对照已取证的无人驾驶 eVTOL，载人机型的生产与商业运营资质仍需补齐</td></tr>
+  </table>
+
+  <div class="callout warn">关键边界：在 TC（及后续生产、运营资质）正式下发前，量产交付与面向公众的收费载人飞行都不能合法开展；工厂下线、意向订单与演示飞行，均不构成可商业交付的证据。安全论证还需覆盖旋翼失效、电池热失控、传感器冲突、通信丢失、异常阵风与地面围观人员隔离等场景。</div>
+
+  <h3>监管与社会环境</h3>
+  <p>2026 年 7 月 1 日起施行的新修订《民用航空法》首次将“低空经济”写入法律文本，明确 300 米以下低空空域分类分级管理，部分空域审批由“一事一批”转向备案制；民航局也先后发布动力提升航空器、限用类无人驾驶航空器适航标准及成体系的 eVTOL 专用审定指南。制度环境在改善，但起降设施、通信导航监视网络、保险体系与公众噪声/坠落风险接受度仍是并行瓶颈。</p>
+</section>
+
+<!-- ================= 07 应用场景 ================= -->
+<section id="s6">
+  <div class="sec-head"><span class="no">07</span><h2 class="title">应用场景分析 <span class="en">Application Scenarios</span></h2></div>
+  <p>技术可行、运营可行与市场可行是三件事。下表按“技术适配—监管难度—支付意愿”对典型场景逐项判断，避免用单一愿景覆盖所有用途。</p>
+  <table>
+    <tr><th>场景</th><th>技术适配</th><th>监管难度</th><th>支付意愿</th><th>综合判断</th></tr>
+    <tr><td>文旅景区 / 地标观光</td><td><span class="tag t-good">高</span></td><td><span class="tag t-mid">中</span></td><td><span class="tag t-good">较高</span></td><td>近期最现实，限定航线、固定起降点、受控客流</td></tr>
+    <tr><td>品牌展示 / 航演活动</td><td><span class="tag t-good">高</span></td><td><span class="tag t-mid">中</span></td><td><span class="tag t-good">高</span></td><td>封闭场地演示，商业逻辑接近高端体验与品牌传播</td></tr>
+    <tr><td>园区 / 警用巡逻、空中巡查</td><td><span class="tag t-mid">中</span></td><td><span class="tag t-mid">中</span></td><td><span class="tag t-mid">中</span></td><td>可作试点，但多数巡查任务无人机性价比更高</td></tr>
+    <tr><td>应急救援 / 医疗运输</td><td><span class="tag t-low">低</span></td><td><span class="tag t-low">高</span></td><td><span class="tag t-good">高</span></td><td>当前载重、续航与全天候能力不足，不适配主力救援</td></tr>
+    <tr><td>城市内通勤 / 打飞的</td><td><span class="tag t-low">低</span></td><td><span class="tag t-low">极高</span></td><td><span class="tag t-mid">中</span></td><td>受续航、噪声、起降点、空域与公众接受度约束，现阶段不可行</td></tr>
+    <tr><td>城际出行</td><td><span class="tag t-low">低</span></td><td><span class="tag t-low">高</span></td><td><span class="tag t-mid">中</span></td><td>需复合翼/倾转旋翼长航程机型，非 X2 纯多旋翼路线</td></tr>
+  </table>
+
+  <figure>
+    <img src="assets/x2-city.jpg" alt="X2 在城市楼宇间飞行的构想场景">
+    <figcaption>图 5：城市低空飞行构想场景（来源：小鹏汇天官方场景渲染）。实际城市通勤运行仍取决于空域、起降设施与适航进展</figcaption>
+  </figure>
+</section>
+
+<!-- ================= 08 市场可行性 ================= -->
+<section id="s7">
+  <div class="sec-head"><span class="no">08</span><h2 class="title">市场可行性 <span class="en">Market Feasibility</span></h2></div>
+
+  <h3>需求侧：高关注度不等于大众市场</h3>
+  <p>公开报道中，分体式“陆地航母”在航展与 CES 等场合获得大量意向订单，海外亦有中东批量采购协议传闻；但意向订单、订金与不可退款订单、最终交付之间存在本质区别。更稳妥的可服务市场模型是：<strong>可服务对象 = 高净值/文旅运营客户 × 对低空飞行体验有支付意愿的比例 × 可获得监管运行条件的比例</strong>，而不是把低空经济宏观规模直接乘上一个份额。</p>
+
+  <h3>产品价格与生命周期成本（情景假设，非官方定价）</h3>
+  <table>
+    <tr><th>情境</th><th>教学假设单价</th><th>年度可交付量</th><th>订单转化率</th><th>年收入量级（未扣成本）</th><th>成立条件</th></tr>
+    <tr><td>保守</td><td>约 150–200 万元人民币</td><td>百台级</td><td>较低</td><td>数亿元人民币</td><td>仅限封闭场地与少量文旅/展示运行</td></tr>
+    <tr><td>基准</td><td>约 200 万元以内</td><td>数百台</td><td>中等</td><td>十亿元级</td><td>多地区有限许可、起降与维护网络成型</td></tr>
+    <tr><td>积极</td><td>更高配置/定制</td><td>上千台</td><td>较高</td><td>更大规模</td><td>适航闭环、监管路径明确、海外市场落地</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--muted)">注：上表为教学敏感性假设，参考公开报道中“陆地航母售价锁定在 200 万元以内”的说法，交付量与转化率均为情景变量；收入仅按单价 × 可交付量估算，未扣除退货、税费、渠道、保修、保险与事故成本。</p>
+
+  <h3>供给侧：补能、维护与运营网络是硬门槛</h3>
+  <ul class="check">
+    <li><strong>起降与补能：</strong>需要合规起降点、充电/补能设施、通信导航监视覆盖；分体方案由陆行体补能是缓解思路，但网络仍需逐城建设。</li>
+    <li><strong>维护与资质：</strong>旋翼、电机、电池、飞控的定期检测与人员培训要求高于普通无人机；运营方需满足通航运营资质、保险与应急处置要求。</li>
+    <li><strong>替代品竞争：</strong>高端体验可被直升机体验、固定翼通航、无人机灯光秀与超跑等替代；载人 eVTOL 必须证明更低综合成本或更高体验价值。</li>
+  </ul>
+
+  <h3>公共接受度</h3>
+  <p>公众对城市低空出行的态度受安全感知、噪声、隐私、坠落风险与程序公平共同影响。限定场地运行的接受门槛较低；一旦进入城市公共上空，社区许可与适航许可同等重要。电池能量密度、航空级材料与核心系统的自主可控程度，也决定长期成本与供应安全。</p>
+
+  <div class="callout">市场结论分级：事件营销与品牌价值高；限量/文旅销售可能成立；高频交通服务市场目前缺乏证据；大众日常出行市场暂不支持。</div>
+</section>
+
+<!-- ================= 09 竞品对比 ================= -->
+<section id="s8">
+  <div class="sec-head"><span class="no">09</span><h2 class="title">竞品横向比较 <span class="en">Comparison</span></h2></div>
+  <table>
+    <tr><th>产品 / 企业</th><th>类别与路线</th><th>验证路径</th><th>主要优势</th><th>主要约束</th></tr>
+    <tr>
+      <td>小鹏汇天 X2 / 陆地航母</td>
+      <td>纯多旋翼验证平台 + 分体式陆空方案；载人 eVTOL</td>
+      <td>国内多地试飞演示；飞行体 TC 受理、TIA 签发，审定最后阶段</td>
+      <td>汽车工程体系与供应链支撑；陆行体补能与收纳思路清晰；品牌与订单关注度高</td>
+      <td>TC/PC/OC 尚未齐套；X2 续航航程有限；起降与运营网络待建</td>
+    </tr>
+    <tr>
+      <td>亿航 EH216-S</td>
+      <td>无人驾驶双座多旋翼 eVTOL</td>
+      <td>已获 CAAC 型号合格证、生产许可证、标准适航证及运营合格证，投入商业运营</td>
+      <td>全球少数适航三证/运营资质齐套；观光场景落地架次多</td>
+      <td>无人驾驶、航程约 30 km，定位短途观光；载人客运规模仍有限</td>
+    </tr>
+    <tr>
+      <td>Joby S4</td>
+      <td>载人倾转/复合翼 eVTOL，1 飞行员 + 4 乘客</td>
+      <td>沿 FAA 型号审定流程推进，临近 TC；多地演示飞行</td>
+      <td>航空设计、低噪声、城市航线与城际接驳目标；资本与伙伴实力强</td>
+      <td>适航周期长、基础设施与成本压力大，尚未规模卖票</td>
+    </tr>
+    <tr>
+      <td>Archer Midnight / 沃飞 AE200 等</td>
+      <td>载人多座 eVTOL，城市空中出租车定位</td>
+      <td>型号审定、量产与运营合作推进中</td>
+      <td>面向城市航线，规模化制造与航线合作布局</td>
+      <td>系统复杂、公共接受度与 vertiport 起降场依赖度高</td>
+    </tr>
+  </table>
+  <p>横向比较的关键不是谁飞得更高，而是各产品能否闭环自己的验证路径：有人驾驶与无人驾驶、纯多旋翼与复合/倾转旋翼、飞行器与分体陆空方案，对应不同的资本强度、监管风险与收入节奏。竞品定位来自企业公开页面与媒体报道，应与监管文件和第三方证据交叉使用。</p>
+</section>
+
+<!-- ================= 10 工程化路线 ================= -->
+<section id="s9">
+  <div class="sec-head"><span class="no">10</span><h2 class="title">工程化路线与 Go/No-Go 判据 <span class="en">Roadmap and Criteria</span></h2></div>
+  <p>一个可信的工程化路线应从定义可验证的飞行包线和安全目标开始，而不是从扩大宣传开始。建议把下一阶段证据拆成四个门槛：</p>
+  <div class="gate">
+    <div class="g"><b>Gate 1 飞行包线</b><span>公开可重复的空载/满载质量、高度、留空时间、姿态误差、风速与地面效应数据。</span></div>
+    <div class="g"><b>Gate 2 结构与动力安全</b><span>旋翼/电机/电池冗余、疲劳寿命、碰撞与热失控、泄压与隔离证据。</span></div>
+    <div class="g"><b>Gate 3 故障安全</b><span>单点/多点失效降级控制、应急着陆、乘员约束与地面人员隔离、故障注入验证。</span></div>
+    <div class="g"><b>Gate 4 监管与经济闭环</b><span>TC/PC/OC 资质、运行许可、保险、维护周转与单位成本模型。</span></div>
+  </div>
+
+  <figure>
+    <img src="assets/step-roadmap.jpg" alt="汇天三步走产品战略">
+    <figcaption>图 6：汇天“三步走”产品战略——近期分体式限定场景、中期倾转固定翼城际、长期陆空一体立体交通（来源：小鹏汽车官方发布）</figcaption>
+  </figure>
+
+  <p>路线图随后应依次建立：<strong>安全案例骨架</strong>（任务与环境、系统边界、危险清单、风险接受原则、关键安全需求与独立验证方法）→ <strong>运行体系</strong>（场地审批、人员训练、气象窗口、观众隔离、应急消防、残骸处置与事故报告）→ <strong>分场景扩张</strong>（从单场地、低频次、受控观众起步，再逐步增加频次与地点，每进入新地点重新评估噪声、净空、地面交通与社区沟通）。</p>
+  <p>若上述门槛无法公开至少部分证据，最合理的结论不是“项目失败”，而是“它仍处于概念验证、品牌验证与审定推进阶段”。对课程研究而言，保留不确定性比用愿景填补空白更专业。</p>
+</section>
+
+<!-- ================= 11 结论 ================= -->
+<section id="s10">
+  <div class="sec-head"><span class="no">11</span><h2 class="title">结论与课程延伸 <span class="en">Conclusion</span></h2></div>
+  <div class="card">
+    <p><strong>总体判断：</strong>小鹏汇天 X2 作为国产第五代双人纯电 eVTOL 验证平台，已经完成从航模/原型到载人公开飞行的跨越，分布式电推进、碳纤维机身与自动飞控构成了可行的技术基础；但其纯多旋翼构型在续航、航程、载重与环境适应性上有明确物理边界。</p>
+    <p>从产品战略看，汇天没有死守“一台车既能上路又能飞”的高难度方案，而是转向分体式“陆地航母”，用陆行体解决道路移动、收纳与补能，用飞行体承担受控低空飞行，这是一条更务实的工程路径。短期价值集中在文旅、展示与限定场景；中期取决于适航取证、起降网络与运营体系；城市大众通勤仍是长期目标，而非当前可交付产品。</p>
+  </div>
+  <h3>可进一步延伸讨论的问题</h3>
+  <ul class="check">
+    <li>纯多旋翼与复合翼、倾转旋翼在航程、效率、噪声与适航难度上的权衡；</li>
+    <li>有人驾驶与无人驾驶两条路线在安全责任、资质与场景上的差异；</li>
+    <li>低空通信导航监视、起降设施与保险体系如何与整机研发同步推进；</li>
+    <li>电池能量密度进步对 eVTOL 航程与载重边界的改变速率。</li>
+  </ul>
+</section>
+
+<!-- ================= 12 参考文献 ================= -->
+<section id="s11">
+  <div class="sec-head"><span class="no">12</span><h2 class="title">参考文献 <span class="en">References</span></h2></div>
+  <ol class="refs">
+    <li>小鹏汽车官方：《小鹏汇天飞行汽车首次亮相欧洲 计划 2022 年上半年欧洲试飞》（X2 官方参数与定位），<a href="https://www.xiaopeng.com/news/company_news/4081.html">xiaopeng.com/news/company_news/4081.html</a></li>
+    <li>小鹏汽车官方：《小鹏汇天首次分享飞行汽车未来城市应用场景 旅航者 X2 将于 9 月 28 日亮相珠海航展》，<a href="https://www.xiaopeng.com/news/company_news/4043.html">xiaopeng.com/news/company_news/4043.html</a></li>
+    <li>飞行汽车网：《小鹏汇天飞行汽车成都首飞 联合川航通航推动西部低空经济发展》（2024-08-30，现场重量/载重/续航口径），<a href="https://www.feiauto.com/tt/782.html">feiauto.com/tt/782.html</a></li>
+    <li>小鹏汽车官方：《小鹏汇天“陆地航母”飞行汽车海外首秀，计划 2026 年量产交付》（CES 展示、分体构型与订单），<a href="https://www.xiaopeng.com/news/company_news/5438.html">xiaopeng.com/news/company_news/5438.html</a></li>
+    <li>新浪财经：《小鹏飞行汽车十三年：从草根试飞到量产取证前夜》（2026-11-26，TC/TIA/订单/工厂与 A868 进展梳理），<a href="https://cj.sina.com.cn/articles/view/1880285685/7012e1f500101ipn5">cj.sina.com.cn</a></li>
+    <li>亿航智能官网：公司与 EH216-S 适航三证及运营资质说明，<a href="https://www.ehang.com/cn/about/">ehang.com/cn/about</a></li>
+    <li>新华网：《低空经济动态观察》（2026-11-03，民航法修订、空域分类分级与适航标准进展），<a href="https://app.xinhuanet.com/news/article.html?articleId=202611034407d7e8a50a431ab8c03ae9bf637f7f">xinhuanet.com</a></li>
+    <li>中国民用航空局：《宋志勇：推动低空经济健康有序发展》（监管、基础设施与适航短板），<a href="http://www.caac.gov.cn/big5/www.caac.gov.cn/XWZX/MHYW/202605/t20260527_230925.html">caac.gov.cn</a></li>
+    <li>新华网：《直面发展关卡 产业蓄能向上 eVTOL 竞速低空经济商业蓝海》（2026-10-20，产品路线、规则/生态/市场三道关口），<a href="http://www3.xinhuanet.com/tech/20261020/7642b5b254ff42b7a44e147bb7af8e87/c.html">xinhuanet.com</a></li>
+    <li>课程参考范例：The Flying Tesla Roadster — 技术、场景与市场可行性，<a href="https://lab.autozyx.com/fundamentals-of-flying-vehicle-technology/tesla-flying-roadster/">lab.autozyx.com</a></li>
+  </ol>
+  <p style="font-size:13px;color:var(--muted);margin-top:12px">说明：企业官网与媒体报道属于自证/转述材料，适航状态以民航局正式文件为准；本报告参数与订单数据截至 2026 年 11 月，后续进展可能更新。</p>
+</section>
+
+</main>
+
+<footer>
+  <div>《飞行汽车技术基础》课程作业 · 小鹏汇天旅航者 X2 全方位调研与分析</div>
+  <div style="margin-top:6px;opacity:.7">技术可行性 · 应用场景 · 市场可行性　|　证据截止 2026-11</div>
+</footer>
+
+</body>
+</html>
